@@ -1,0 +1,40 @@
+{
+    "name": "grime",
+    "version": "0.0.0",
+    "private": true,
+
+    "description": "Dust templating helper library",
+    "keywords": [ "dust", "template" ],
+    "author": "Rowan Manning (http://rowanmanning.com/)",
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rowanmanning/grime.git"
+    },
+    "homepage": "https://github.com/rowanmanning/grime",
+    "bugs": "https://github.com/rowanmanning/grime/issues",
+    "license": "MIT",
+
+    "engines": {
+        "node": ">=0.10"
+    },
+    "dependencies": {
+        "gaze": "~0.5",
+        "glob": "~5.0",
+        "underscore": "~1.8"
+    },
+    "devDependencies": {
+        "dustjs-helpers": "~1.6",
+        "dustjs-linkedin": "~2.6",
+        "jshint": "~2.6",
+        "mocha": "~2.2",
+        "mockery": "~1.4",
+        "proclaim": "~2.0",
+        "sinon": "~1.14"
+    },
+
+    "main": "./lib/grime.js",
+    "scripts": {
+        "test": "make ci"
+    }
+}
