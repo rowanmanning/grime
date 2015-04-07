@@ -685,6 +685,7 @@ describe('lib/grime', function () {
 
         beforeEach(function () {
             instance = {
+                load: sinon.spy(),
                 middleware: sinon.spy()
             };
             options = {
@@ -696,6 +697,10 @@ describe('lib/grime', function () {
 
         it('should create a grime instance with the passed in options', function () {
             assert.isTrue(grime.create.withArgs(options).calledOnce);
+        });
+
+        it('should call `load` on the created instance', function () {
+            assert.isTrue(instance.load.calledOnce);
         });
 
         it('should return the middleware method of a created grime instance', function () {
