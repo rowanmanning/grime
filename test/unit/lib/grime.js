@@ -58,7 +58,8 @@ describe('lib/grime', function () {
                 responseDataProperty: 'testViewData',
                 templateExtension: 'dust',
                 templateProperty: 'testTemplate',
-                useBuiltInHelpers: false
+                useBuiltInHelpers: false,
+                debug: false
             };
             instance = grime.create(options);
         });
@@ -671,7 +672,11 @@ describe('lib/grime', function () {
         });
 
         it('should have a `useBuiltInHelpers` property', function () {
-            assert.isTrue(defaults.useBuiltInHelpers, true);
+            assert.isTrue(defaults.useBuiltInHelpers);
+        });
+
+        it('should have a `debug` property', function () {
+            assert.isFalse(defaults.debug);
         });
 
     });

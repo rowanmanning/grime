@@ -229,6 +229,10 @@ The property on `response.viewData` where the template name is stored, used in m
 
 Whether to load the built-in dust helpers found in `dustjs-helpers`. Defaults to `true`.
 
+#### `debug` (boolean)
+
+Whether to log debug messages. Defaults to `false`.
+
 
 Examples
 --------
