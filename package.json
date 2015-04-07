@@ -24,6 +24,7 @@
         "underscore": "~1.8"
     },
     "devDependencies": {
+        "connect": "~3.3",
         "dustjs-helpers": "~1.6",
         "dustjs-linkedin": "~2.6",
         "jshint": "~2.6",

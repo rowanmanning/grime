@@ -4,8 +4,8 @@ var grime = require('../..');
 
 // Create a renderer
 var renderer = grime({
-    filtersPath: __dirname + '/view/filter',
-    helpersPath: __dirname + '/view/helper',
+    filtersPath: __dirname + '/../_shared/view/filter',
+    helpersPath: __dirname + '/../_shared/view/helper',
     templatesPath: __dirname + '/view/template'
 });
 

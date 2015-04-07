@@ -241,6 +241,14 @@ Load a template, a helper, and a filter, then render the template. Output the re
 node example/basic
 ```
 
+### Middleware Example
+
+Add a renderer to a [connect][connect] middleware stack and render/output templates based on response data.
+
+```
+node example/middleware
+```
+
 
 Contributing
 ------------

@@ -1,0 +1,8 @@
+
+<p>This is an example dust template.</p>
+
+<p>The "foo" property is set to "{foo}".</p>
+
+<p>A random number is {@random-number/}.</p>
+
+<p>The reverse of "{foo}" is "{foo|reverse}".</p>
