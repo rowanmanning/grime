@@ -55,7 +55,7 @@ describe('lib/grime', function () {
                 filtersPath: 'test-views/filter',
                 helpersPath: 'test-views/helper',
                 templatesPath: 'test-views/template',
-                responseDataProperty: 'testViewData',
+                sourceProperty: 'testViewData',
                 templateExtension: 'dust',
                 templateProperty: 'testTemplate',
                 useBuiltInHelpers: false,
@@ -659,8 +659,8 @@ describe('lib/grime', function () {
             assert.strictEqual(defaults.templatesPath, './view/template');
         });
 
-        it('should have a `responseDataProperty` property', function () {
-            assert.strictEqual(defaults.responseDataProperty, 'viewData');
+        it('should have a `sourceProperty` property', function () {
+            assert.strictEqual(defaults.sourceProperty, 'viewData');
         });
 
         it('should have a `templateExtension` property', function () {

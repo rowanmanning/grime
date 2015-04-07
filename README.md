@@ -213,7 +213,7 @@ The directory to look for helper files in. Defaults to `'./view/helper'`.
 
 The directory to look for template files in. Defaults to `'./view/template'`.
 
-#### `responseDataProperty` (string)
+#### `sourceProperty` (string)
 
 The property on `response` where view data is stored, used in middleware only. Defaults to `'viewData'`.
 

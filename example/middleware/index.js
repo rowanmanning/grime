@@ -18,7 +18,7 @@ app.use(function (request, response, next) {
 
 // Set up the Grime middleware
 app.use(grime.middleware({
-    responseDataProperty: 'connectViewData',
+    sourceProperty: 'connectViewData',
     templateProperty: 'template',
     filtersPath: __dirname + '/../_shared/view/filter',
     helpersPath: __dirname + '/../_shared/view/helper',
