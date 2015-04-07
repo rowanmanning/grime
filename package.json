@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
 
-    "description": "Dust templating helper library",
+    "description": "Manage loading and watching of dust templates, helpers, and filters",
     "keywords": [ "dust", "template" ],
     "author": "Rowan Manning (http://rowanmanning.com/)",
 
