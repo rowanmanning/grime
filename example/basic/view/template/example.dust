@@ -1,0 +1,5 @@
+
+This is an example dust template.{~n}
+The "foo" property is set to "{foo}".{~n}
+A random number is {@random-number/}.{~n}
+The reverse of "{foo}" is "{foo|reverse}".

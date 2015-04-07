@@ -230,6 +230,18 @@ The property on `response.viewData` where the template name is stored, used in m
 Whether to load the built-in dust helpers found in `dustjs-helpers`. Defaults to `true`.
 
 
+Examples
+--------
+
+### Basic Example
+
+Load a template, a helper, and a filter, then render the template. Output the rendered template to the console.
+
+```
+node example/basic
+```
+
+
 Contributing
 ------------
 
