@@ -25,6 +25,17 @@ renderer.render('example', {}, function (error, output) {
 });
 ```
 
+Table Of Contents
+-----------------
+
+- [Install](#install)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Options](#options)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+
 
 Install
 -------
