@@ -26,10 +26,10 @@
         "connect": "~3.3",
         "dustjs-helpers": "~1.6",
         "dustjs-linkedin": "~2.6",
-        "jshint": "~2.6",
+        "jshint": "~2.7",
         "mocha": "~2.2",
         "mockery": "~1.4",
-        "proclaim": "~2.0",
+        "proclaim": "~3.2",
         "sinon": "~1.14"
     },
 
