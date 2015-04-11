@@ -4,10 +4,11 @@ Grime
 
 Manage loading and watching of [dust][dust] templates, helpers, and filters.
 
-**Current Version:** *0.1.0*  
-**Node Support:** *0.10.x, 0.12.x*  
-**License:** [MIT][mit]  
-**Build Status:** [![Build Status][travis-img]][travis]
+[![NPM version][shield-npm]][info-npm]
+[![Node.js version support][shield-node]][info-node]
+[![Build status][shield-build]][info-build]
+[![Dependencies][shield-dependencies]][info-dependencies]
+[![MIT licensed][shield-license]][info-license]
 
 ```js
 var grime = require('grime');
@@ -280,7 +281,7 @@ make lint test
 License
 -------
 
-Grime is licensed under the [MIT][mit] license.  
+Grime is licensed under the [MIT][info-license] license.  
 Copyright &copy; 2015, Rowan Manning
 
 
@@ -288,7 +289,15 @@ Copyright &copy; 2015, Rowan Manning
 [connect]: https://github.com/senchalabs/connect
 [dust]: https://github.com/linkedin/dustjs
 [dust-helpers]: https://github.com/linkedin/dustjs-helpers
-[mit]: LICENSE
 [npm]: https://npmjs.org/
-[travis]: https://travis-ci.org/rowanmanning/grime
-[travis-img]: https://travis-ci.org/rowanmanning/grime.svg?branch=master
+
+[info-dependencies]: https://gemnasium.com/rowanmanning/grime
+[info-license]: LICENSE
+[info-node]: package.json
+[info-npm]: https://www.npmjs.com/package/grime
+[info-build]: https://travis-ci.org/rowanmanning/grime
+[shield-dependencies]: https://img.shields.io/gemnasium/rowanmanning/grime.svg
+[shield-license]: https://img.shields.io/badge/license-MIT-blue.svg
+[shield-node]: https://img.shields.io/node/v/grime.svg?label=node.js+support
+[shield-npm]: https://img.shields.io/npm/v/grime.svg
+[shield-build]: https://img.shields.io/travis/rowanmanning/grime/master.svg
