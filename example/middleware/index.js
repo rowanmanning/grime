@@ -16,22 +16,15 @@ app.use(function (request, response, next) {
     next();
 });
 
-// Create a renderer
-var renderer = grime({
+// Set up the Grime middleware
+app.use(grime.middleware({
     sourceProperty: 'connectViewData',
     templateProperty: 'template',
     filtersPath: __dirname + '/../_shared/view/filter',
     helpersPath: __dirname + '/../_shared/view/helper',
     templatesPath: __dirname + '/view/template',
     debug: true
-});
-
-// Load templates and watch for changes
-renderer.load();
-renderer.watch();
-
-// Set up the Grime middleware
-app.use(renderer.middleware);
+}));
 
 // Listen on a port
 var port = process.env.PORT || 3000;

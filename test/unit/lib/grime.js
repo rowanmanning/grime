@@ -662,24 +662,40 @@ describe('lib/grime', function () {
         beforeEach(function () {
             instance = {
                 load: sinon.spy(),
+                watch: sinon.spy(),
                 middleware: sinon.spy()
             };
             options = {
                 foo: 'bar'
             };
             grime.create = sinon.stub().returns(instance);
-            middleware = grime.middleware(options);
         });
 
         it('should create a grime instance with the passed in options', function () {
+            middleware = grime.middleware(options);
             assert.isTrue(grime.create.withArgs(options).calledOnce);
         });
 
-        it('should call `load` on the created instance', function () {
+        it('should not call `load` on the created instance if `NODE_ENV` is "production"', function () {
+            var oldNodeEnv = process.env.NODE_ENV;
+            process.env.NODE_ENV = 'production';
+            middleware = grime.middleware(options);
             assert.isTrue(instance.load.calledOnce);
+            assert.isFalse(instance.watch.called);
+            process.env.NODE_ENV = oldNodeEnv;
+        });
+
+        it('should call `watch` on the created instance if `NODE_ENV` is not "production"', function () {
+            var oldNodeEnv = process.env.NODE_ENV;
+            process.env.NODE_ENV = 'development';
+            middleware = grime.middleware(options);
+            assert.isTrue(instance.watch.calledOnce);
+            assert.isFalse(instance.load.called);
+            process.env.NODE_ENV = oldNodeEnv;
         });
 
         it('should return the middleware method of a created grime instance', function () {
+            middleware = grime.middleware(options);
             assert.strictEqual(middleware, instance.middleware);
         });
 
