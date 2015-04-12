@@ -7,9 +7,12 @@ var mockery = require('mockery');
 var sinon = require('sinon');
 
 describe('lib/grime', function () {
-    var dust, dustHelpers, fs, gaze, glob, grime, http, underscore;
+    var chokidar, dust, dustHelpers, fs, glob, grime, http, underscore;
 
     beforeEach(function () {
+
+        chokidar = require('../mock/chokidar');
+        mockery.registerMock('chokidar', chokidar);
 
         dust = require('../mock/dustjs-linkedin');
         mockery.registerMock('dustjs-linkedin', dust);
@@ -19,9 +22,6 @@ describe('lib/grime', function () {
 
         fs = require('../mock/fs');
         mockery.registerMock('fs', fs);
-
-        gaze = require('../mock/gaze');
-        mockery.registerMock('gaze', gaze);
 
         glob = require('../mock/glob');
         mockery.registerMock('glob', glob);
@@ -52,9 +52,9 @@ describe('lib/grime', function () {
 
         beforeEach(function () {
             options = {
-                filtersPath: 'test-views/filter',
-                helpersPath: 'test-views/helper',
-                templatesPath: 'test-views/template',
+                filtersPath: '/test-views/filter',
+                helpersPath: '/test-views/helper',
+                templatesPath: '/test-views/template',
                 sourceProperty: 'testViewData',
                 templateExtension: 'dust',
                 templateProperty: 'testTemplate',
@@ -66,7 +66,7 @@ describe('lib/grime', function () {
 
         it('should default the options', function () {
             assert.isTrue(underscore.defaults.calledOnce);
-            assert.deepEqual(underscore.defaults.firstCall.args[0], {});
+            assert.isObject(underscore.defaults.firstCall.args[0]);
             assert.strictEqual(underscore.defaults.firstCall.args[1], options);
             assert.strictEqual(underscore.defaults.firstCall.args[2], grime.defaults);
         });
@@ -109,8 +109,8 @@ describe('lib/grime', function () {
                 beforeEach(function () {
                     fooFilter = sinon.spy();
                     barFilter = {};
-                    mockery.registerMock('test-views/filter/foo', fooFilter);
-                    mockery.registerMock('test-views/filter/bar', barFilter);
+                    mockery.registerMock('/test-views/filter/foo', fooFilter);
+                    mockery.registerMock('/test-views/filter/bar', barFilter);
                 });
 
                 it('should register the loaded filter with dust', function () {
@@ -156,10 +156,10 @@ describe('lib/grime', function () {
             describe('.loadFilters()', function () {
 
                 beforeEach(function () {
-                    glob.sync.withArgs('test-views/filter/**/*.js').returns([
-                        'test-views/filter/foo.js',
-                        'test-views/filter/bar.js',
-                        'test-views/filter/baz/qux.js'
+                    glob.sync.withArgs('/test-views/filter/**/*.js').returns([
+                        '/test-views/filter/foo.js',
+                        '/test-views/filter/bar.js',
+                        '/test-views/filter/baz/qux.js'
                     ]);
                     instance.loadFilter = sinon.spy();
                     instance.loadFilters();
@@ -183,8 +183,8 @@ describe('lib/grime', function () {
                 beforeEach(function () {
                     fooHelper = sinon.spy();
                     barHelper = {};
-                    mockery.registerMock('test-views/helper/foo', fooHelper);
-                    mockery.registerMock('test-views/helper/bar', barHelper);
+                    mockery.registerMock('/test-views/helper/foo', fooHelper);
+                    mockery.registerMock('/test-views/helper/bar', barHelper);
                 });
 
                 it('should register the loaded helper with dust', function () {
@@ -230,10 +230,10 @@ describe('lib/grime', function () {
             describe('.loadHelpers()', function () {
 
                 beforeEach(function () {
-                    glob.sync.withArgs('test-views/helper/**/*.js').returns([
-                        'test-views/helper/foo.js',
-                        'test-views/helper/bar.js',
-                        'test-views/helper/baz/qux.js'
+                    glob.sync.withArgs('/test-views/helper/**/*.js').returns([
+                        '/test-views/helper/foo.js',
+                        '/test-views/helper/bar.js',
+                        '/test-views/helper/baz/qux.js'
                     ]);
                     instance.loadHelper = sinon.spy();
                     instance.loadHelpers();
@@ -260,9 +260,9 @@ describe('lib/grime', function () {
                     barTemplate = '<p>{#bar}bar{/b}</p>';
                     fooHtmlTemplate = '<p>foo-html</p>';
                     fs.readFileSync.throws(new Error('...'));
-                    fs.readFileSync.withArgs('test-views/template/foo.dust', 'utf-8').returns(fooTemplate);
-                    fs.readFileSync.withArgs('test-views/template/bar.dust', 'utf-8').returns(barTemplate);
-                    fs.readFileSync.withArgs('test-views/template/foo.html', 'utf-8').returns(fooHtmlTemplate);
+                    fs.readFileSync.withArgs('/test-views/template/foo.dust', 'utf-8').returns(fooTemplate);
+                    fs.readFileSync.withArgs('/test-views/template/bar.dust', 'utf-8').returns(barTemplate);
+                    fs.readFileSync.withArgs('/test-views/template/foo.html', 'utf-8').returns(fooHtmlTemplate);
                     instance.dust.compile.withArgs(fooTemplate, 'foo').returns(fooTemplateCompiled);
                     instance.dust.compile.withArgs(barTemplate, 'bar').throws(new Error('...'));
                 });
@@ -275,7 +275,7 @@ describe('lib/grime', function () {
 
                 it('should use `options.templateExtension` to resolve the template path', function () {
                     instance = grime.create({
-                        templatesPath: 'test-views/template',
+                        templatesPath: '/test-views/template',
                         templateExtension: 'html'
                     });
                     instance.loadTemplate('foo');
@@ -332,10 +332,10 @@ describe('lib/grime', function () {
             describe('.loadTemplates()', function () {
 
                 beforeEach(function () {
-                    glob.sync.withArgs('test-views/template/**/*.dust').returns([
-                        'test-views/template/foo.dust',
-                        'test-views/template/bar.dust',
-                        'test-views/template/baz/qux.dust'
+                    glob.sync.withArgs('/test-views/template/**/*.dust').returns([
+                        '/test-views/template/foo.dust',
+                        '/test-views/template/bar.dust',
+                        '/test-views/template/baz/qux.dust'
                     ]);
                     instance.loadTemplate = sinon.spy();
                     instance.loadTemplates();
@@ -377,7 +377,7 @@ describe('lib/grime', function () {
             describe('.isWatching()', function () {
 
                 it('should return `true` if the `watcher` property is truthy', function () {
-                    instance.watcher = new gaze.Gaze();
+                    instance.watcher = chokidar.watch();
                     assert.isTrue(instance.isWatching());
                 });
 
@@ -399,7 +399,7 @@ describe('lib/grime', function () {
                     instance.loadHelper = sinon.spy();
                     instance.loadTemplate = sinon.spy();
                     instance.watch();
-                    watcher = gaze.Gaze.firstCall.returnValue;
+                    watcher = chokidar.watch.firstCall.returnValue;
                 });
 
                 it('should create a new watcher and store it on the `watcher` property', function () {
@@ -407,95 +407,66 @@ describe('lib/grime', function () {
                 });
 
                 it('should pass the expected paths to the watcher', function () {
-                    assert.deepEqual(gaze.Gaze.firstCall.args[0], [
-                        'test-views/filter/**/*.js',
-                        'test-views/helper/**/*.js',
-                        'test-views/template/**/*.dust'
+                    assert.deepEqual(chokidar.watch.firstCall.args[0], [
+                        '/test-views/filter/**/*.js',
+                        '/test-views/helper/**/*.js',
+                        '/test-views/template/**/*.dust'
                     ]);
                 });
 
-                it('should handle the watcher "added" event', function () {
-                    assert.isTrue(watcher.on.withArgs('added').calledOnce);
-                    assert.isFunction(watcher.on.withArgs('added').firstCall.args[1]);
+                it('should handle the watcher "add" event', function () {
+                    assert.isTrue(watcher.on.withArgs('add').calledOnce);
+                    assert.isFunction(watcher.on.withArgs('add').firstCall.args[1]);
                 });
 
-                describe('watcher "added" handler', function () {
-                    var addedHandler;
+                describe('watcher "add" handler', function () {
+                    var addHandler;
 
                     beforeEach(function () {
-                        addedHandler = watcher.on.withArgs('added').firstCall.args[1];
+                        addHandler = watcher.on.withArgs('add').firstCall.args[1];
                     });
 
                     it('should load filters when they are added', function () {
-                        addedHandler('test-views/filter/foo/bar.js');
+                        addHandler('/test-views/filter/foo/bar.js');
                         assert.isTrue(instance.loadFilter.withArgs('foo/bar').calledOnce);
                     });
 
                     it('should load helpers when they are added', function () {
-                        addedHandler('test-views/helper/foo/bar.js');
+                        addHandler('/test-views/helper/foo/bar.js');
                         assert.isTrue(instance.loadHelper.withArgs('foo/bar').calledOnce);
                     });
 
                     it('should load templates when they are added', function () {
-                        addedHandler('test-views/template/foo/bar.js');
+                        addHandler('/test-views/template/foo/bar.js');
                         assert.isTrue(instance.loadTemplate.withArgs('foo/bar').calledOnce);
                     });
 
                 });
 
-                it('should handle the watcher "changed" event', function () {
-                    assert.isTrue(watcher.on.withArgs('changed').calledOnce);
-                    assert.isFunction(watcher.on.withArgs('changed').firstCall.args[1]);
+                it('should handle the watcher "change" event', function () {
+                    assert.isTrue(watcher.on.withArgs('change').calledOnce);
+                    assert.isFunction(watcher.on.withArgs('change').firstCall.args[1]);
                 });
 
-                describe('watcher "changed" handler', function () {
-                    var changedHandler;
+                describe('watcher "change" handler', function () {
+                    var changeHandler;
 
                     beforeEach(function () {
-                        changedHandler = watcher.on.withArgs('changed').firstCall.args[1];
+                        changeHandler = watcher.on.withArgs('change').firstCall.args[1];
                     });
 
                     it('should load filters when they are changed', function () {
-                        changedHandler('test-views/filter/foo/bar.js');
+                        changeHandler('/test-views/filter/foo/bar.js');
                         assert.isTrue(instance.loadFilter.withArgs('foo/bar').calledOnce);
                     });
 
                     it('should load helpers when they are changed', function () {
-                        changedHandler('test-views/helper/foo/bar.js');
+                        changeHandler('/test-views/helper/foo/bar.js');
                         assert.isTrue(instance.loadHelper.withArgs('foo/bar').calledOnce);
                     });
 
                     it('should load templates when they are changed', function () {
-                        changedHandler('test-views/template/foo/bar.js');
-                        assert.isTrue(instance.loadTemplate.withArgs('foo/bar').calledOnce);
-                    });
-
-                });
-
-                it('should handle the watcher "renamed" event', function () {
-                    assert.isTrue(watcher.on.withArgs('renamed').calledOnce);
-                    assert.isFunction(watcher.on.withArgs('renamed').firstCall.args[1]);
-                });
-
-                describe('watcher "renamed" handler', function () {
-                    var renamedHandler;
-
-                    beforeEach(function () {
-                        renamedHandler = watcher.on.withArgs('renamed').firstCall.args[1];
-                    });
-
-                    it('should load filters when they are renamed', function () {
-                        renamedHandler('test-views/filter/foo/bar.js');
-                        assert.isTrue(instance.loadFilter.withArgs('foo/bar').calledOnce);
-                    });
-
-                    it('should load helpers when they are renamed', function () {
-                        renamedHandler('test-views/helper/foo/bar.js');
-                        assert.isTrue(instance.loadHelper.withArgs('foo/bar').calledOnce);
-                    });
-
-                    it('should load templates when they are renamed', function () {
-                        renamedHandler('test-views/template/foo/bar.js');
+                        changeHandler('/test-views/template/foo/bar.js');
                         assert.isTrue(instance.loadTemplate.withArgs('foo/bar').calledOnce);
                     });
 
@@ -517,7 +488,7 @@ describe('lib/grime', function () {
                 var watcher;
 
                 beforeEach(function () {
-                    watcher = instance.watcher = new gaze.Gaze();
+                    watcher = instance.watcher = chokidar.watch();
                     instance.unwatch();
                 });
 

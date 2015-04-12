@@ -18,7 +18,7 @@
         "node": ">=0.10"
     },
     "dependencies": {
-        "gaze": "~0.5",
+        "chokidar": "~1.0",
         "glob": "~5.0",
         "underscore": "~1.8"
     },
