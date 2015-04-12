@@ -1,6 +1,6 @@
 {
     "name": "grime",
-    "version": "0.1.1",
+    "version": "0.2.0",
 
     "description": "Manage loading and watching of dust templates, helpers, and filters",
     "keywords": [ "dust", "template" ],
