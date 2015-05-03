@@ -7,7 +7,7 @@ var mockery = require('mockery');
 var sinon = require('sinon');
 
 describe('lib/grime', function () {
-    var chokidar, dust, dustHelpers, fs, glob, grime, http, underscore;
+    var chokidar, dust, dustHelpers, fs, glob, grime, http, tryRequire, underscore;
 
     beforeEach(function () {
 
@@ -27,6 +27,9 @@ describe('lib/grime', function () {
         mockery.registerMock('glob', glob);
 
         http = require('../mock/http');
+
+        tryRequire = sinon.stub();
+        mockery.registerMock('./try-require', tryRequire);
 
         underscore = require('../mock/underscore');
         mockery.registerMock('underscore', underscore);
@@ -112,8 +115,8 @@ describe('lib/grime', function () {
                 beforeEach(function () {
                     fooFilter = sinon.spy();
                     barFilter = {};
-                    mockery.registerMock('/test-views/filter/foo', fooFilter);
-                    mockery.registerMock('/test-views/filter/bar', barFilter);
+                    tryRequire.withArgs('/test-views/filter/foo').returns(fooFilter);
+                    tryRequire.withArgs('/test-views/filter/bar').returns(barFilter);
                 });
 
                 it('should register the loaded filter with dust', function () {
@@ -201,8 +204,8 @@ describe('lib/grime', function () {
                 beforeEach(function () {
                     fooHelper = sinon.spy();
                     barHelper = {};
-                    mockery.registerMock('/test-views/helper/foo', fooHelper);
-                    mockery.registerMock('/test-views/helper/bar', barHelper);
+                    tryRequire.withArgs('/test-views/helper/foo').returns(fooHelper);
+                    tryRequire.withArgs('/test-views/helper/bar').returns(barHelper);
                 });
 
                 it('should register the loaded helper with dust', function () {
