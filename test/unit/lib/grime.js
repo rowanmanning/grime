@@ -350,7 +350,7 @@ describe('lib/grime', function () {
 
                 it('should log failure if the template does not compile', function () {
                     instance.loadTemplate('bar');
-                    assert.isTrue(options.log.error.withArgs('Template "bar" does not compile').calledOnce);
+                    assert.isTrue(options.log.error.withArgs('Template "bar" does not compile: ...').calledOnce);
                 });
 
                 it('should not compile the template if it does not exist', function () {
