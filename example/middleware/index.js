@@ -22,8 +22,7 @@ app.use(grime.middleware({
     templateProperty: 'template',
     filtersPath: __dirname + '/../_shared/view/filter',
     helpersPath: __dirname + '/../_shared/view/helper',
-    templatesPath: __dirname + '/view/template',
-    debug: true
+    templatesPath: __dirname + '/view/template'
 }));
 
 // Listen on a port

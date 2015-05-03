@@ -225,6 +225,10 @@ The directory to look for helper files in. Defaults to `'./view/helper'`.
 
 The directory to look for template files in. Defaults to `'./view/template'`.
 
+#### `log` (object)
+
+An object which implments the methods `error` and `info` which will be used to report errors and request information. Defaults to a mock object which doesn't output anything.
+
 #### `sourceProperty` (string)
 
 The property on `response` where view data is stored, used in middleware only. Defaults to `'viewData'`.
@@ -240,10 +244,6 @@ The property on `response.viewData` where the template name is stored, used in m
 #### `useBuiltInHelpers` (boolean)
 
 Whether to load the built-in dust helpers found in `dustjs-helpers`. Defaults to `true`.
-
-#### `debug` (boolean)
-
-Whether to log debug messages. Defaults to `false`.
 
 
 Examples

@@ -55,11 +55,14 @@ describe('lib/grime', function () {
                 filtersPath: '/test-views/filter',
                 helpersPath: '/test-views/helper',
                 templatesPath: '/test-views/template',
+                log: {
+                    error: sinon.spy(),
+                    info: sinon.spy()
+                },
                 sourceProperty: 'testViewData',
                 templateExtension: 'dust',
                 templateProperty: 'testTemplate',
-                useBuiltInHelpers: false,
-                debug: false
+                useBuiltInHelpers: false
             };
             instance = grime.create(options);
         });
@@ -122,6 +125,11 @@ describe('lib/grime', function () {
                     assert.isTrue(instance.loadFilter('foo'));
                 });
 
+                it('should log success if the filter was loaded and registered', function () {
+                    instance.loadFilter('foo');
+                    assert.isTrue(options.log.info.withArgs('Filter loaded: "foo"').calledOnce);
+                });
+
                 it('should not register the filter if it does not export a function', function () {
                     instance.loadFilter('bar');
                     assert.notStrictEqual(instance.dust.filters.bar, barFilter);
@@ -137,6 +145,11 @@ describe('lib/grime', function () {
                     });
                 });
 
+                it('should log failure if the filter does not export a function', function () {
+                    instance.loadFilter('bar');
+                    assert.isTrue(options.log.error.withArgs('Filter "bar" does not export a function').calledOnce);
+                });
+
                 it('should return `false` if the filter does not exist', function () {
                     assert.isFalse(instance.loadFilter('baz'));
                 });
@@ -145,6 +158,11 @@ describe('lib/grime', function () {
                     assert.doesNotThrow(function () {
                         instance.loadFilter('baz');
                     });
+                });
+
+                it('should log failure if the filter does not exist', function () {
+                    instance.loadFilter('baz');
+                    assert.isTrue(options.log.error.withArgs('Filter "baz" does not exist').calledOnce);
                 });
 
             });
@@ -196,6 +214,11 @@ describe('lib/grime', function () {
                     assert.isTrue(instance.loadHelper('foo'));
                 });
 
+                it('should log success if the helper was loaded and registered', function () {
+                    instance.loadHelper('foo');
+                    assert.isTrue(options.log.info.withArgs('Helper loaded: "foo"').calledOnce);
+                });
+
                 it('should not register the helper if it does not export a function', function () {
                     instance.loadHelper('bar');
                     assert.notStrictEqual(instance.dust.helpers.bar, barHelper);
@@ -211,6 +234,11 @@ describe('lib/grime', function () {
                     });
                 });
 
+                it('should log failure if the helper does not export a function', function () {
+                    instance.loadHelper('bar');
+                    assert.isTrue(options.log.error.withArgs('Helper "bar" does not export a function').calledOnce);
+                });
+
                 it('should return `false` if the helper does not exist', function () {
                     assert.isFalse(instance.loadHelper('baz'));
                 });
@@ -219,6 +247,11 @@ describe('lib/grime', function () {
                     assert.doesNotThrow(function () {
                         instance.loadHelper('baz');
                     });
+                });
+
+                it('should log failure if the helper does not exist', function () {
+                    instance.loadHelper('baz');
+                    assert.isTrue(options.log.error.withArgs('Helper "baz" does not exist').calledOnce);
                 });
 
             });
@@ -297,6 +330,11 @@ describe('lib/grime', function () {
                     assert.isTrue(instance.loadTemplate('foo'));
                 });
 
+                it('should log success if the template was loaded and compiled', function () {
+                    instance.loadTemplate('foo');
+                    assert.isTrue(options.log.info.withArgs('Template loaded: "foo"').calledOnce);
+                });
+
                 it('should return `false` if the template does not compile', function () {
                     assert.isFalse(instance.loadTemplate('bar'));
                 });
@@ -305,6 +343,11 @@ describe('lib/grime', function () {
                     assert.doesNotThrow(function () {
                         instance.loadTemplate('bar');
                     });
+                });
+
+                it('should log failure if the template does not compile', function () {
+                    instance.loadTemplate('bar');
+                    assert.isTrue(options.log.error.withArgs('Template "bar" does not compile').calledOnce);
                 });
 
                 it('should not compile the template if it does not exist', function () {
@@ -321,6 +364,11 @@ describe('lib/grime', function () {
                     assert.doesNotThrow(function () {
                         instance.loadTemplate('baz');
                     });
+                });
+
+                it('should log failure if the template does not exist', function () {
+                    instance.loadTemplate('baz');
+                    assert.isTrue(options.log.error.withArgs('Template "baz" does not exist').calledOnce);
                 });
 
             });
@@ -630,6 +678,18 @@ describe('lib/grime', function () {
             assert.strictEqual(defaults.templatesPath, './view/template');
         });
 
+        it('should have a `log` property', function () {
+            assert.isObject(defaults.log);
+        });
+
+        it('should have a `log.error` method', function () {
+            assert.isFunction(defaults.log.error);
+        });
+
+        it('should have a `log.info` method', function () {
+            assert.isFunction(defaults.log.info);
+        });
+
         it('should have a `sourceProperty` property', function () {
             assert.strictEqual(defaults.sourceProperty, 'viewData');
         });
@@ -644,10 +704,6 @@ describe('lib/grime', function () {
 
         it('should have a `useBuiltInHelpers` property', function () {
             assert.isTrue(defaults.useBuiltInHelpers);
-        });
-
-        it('should have a `debug` property', function () {
-            assert.isFalse(defaults.debug);
         });
 
     });
