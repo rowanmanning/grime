@@ -227,7 +227,7 @@ The directory to look for template files in. Defaults to `'./view/template'`.
 
 #### `log` (object)
 
-An object which implments the methods `error` and `info` which will be used to report errors and request information. Defaults to a mock object which doesn't output anything.
+An object which implements the methods `error` and `info` which will be used to report errors and loading information. Defaults to a mock object which doesn't output anything.
 
 #### `sourceProperty` (string)
 
