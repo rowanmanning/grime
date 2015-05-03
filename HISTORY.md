@@ -1,6 +1,11 @@
 
 # History
 
+## 0.3.0 pre-release (2015-05-03)
+
+  * Implement proper logging
+  * Fix caching issues with filters and helpers
+
 ## 0.2.0 pre-release (2015-04-12)
 
   * Use a different watching library
