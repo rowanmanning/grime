@@ -1,5 +1,5 @@
-/* jshint maxstatements: false, maxlen: false */
-/* global beforeEach, describe, it */
+// jshint maxstatements: false
+// jscs:disable disallowMultipleVarDecl, maximumLineLength
 'use strict';
 
 var assert = require('proclaim');
@@ -82,7 +82,7 @@ describe('lib/grime', function () {
         });
 
         describe('returned object', function () {
-            
+
             it('should have a `dust` property', function () {
                 assert.isDefined(instance.dust);
             });
