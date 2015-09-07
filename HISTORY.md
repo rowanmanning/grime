@@ -1,6 +1,11 @@
 
 # History
 
+## 0.3.2 pre-release (2015-08-07)
+
+  * Update dependencies
+  * Add code coverage reporting
+
 ## 0.3.1 pre-release (2015-06-21)
 
   * Update dependencies
