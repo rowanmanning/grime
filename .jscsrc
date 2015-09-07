@@ -55,6 +55,7 @@
 	"validateQuoteMarks": "'",
 
 	"excludeFiles": [
+		"coverage",
 		"example/full/public",
 		"example/getting-started/public",
 		"node_modules"
