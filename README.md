@@ -7,6 +7,7 @@ Manage loading and watching of [dust][dust] templates, helpers, and filters.
 [![NPM version][shield-npm]][info-npm]
 [![Node.js version support][shield-node]][info-node]
 [![Build status][shield-build]][info-build]
+[![Code coverage][shield-coverage]][info-coverage]
 [![Dependencies][shield-dependencies]][info-dependencies]
 [![MIT licensed][shield-license]][info-license]
 
@@ -291,13 +292,15 @@ Copyright &copy; 2015, Rowan Manning
 [dust-helpers]: https://github.com/linkedin/dustjs-helpers
 [npm]: https://npmjs.org/
 
+[info-coverage]: https://coveralls.io/github/rowanmanning/grime
 [info-dependencies]: https://gemnasium.com/rowanmanning/grime
 [info-license]: LICENSE
 [info-node]: package.json
 [info-npm]: https://www.npmjs.com/package/grime
 [info-build]: https://travis-ci.org/rowanmanning/grime
+[shield-coverage]: https://img.shields.io/coveralls/rowanmanning/grime.svg
 [shield-dependencies]: https://img.shields.io/gemnasium/rowanmanning/grime.svg
 [shield-license]: https://img.shields.io/badge/license-MIT-blue.svg
-[shield-node]: https://img.shields.io/badge/node.js%20support-0.10–4.0-brightgreen.svg
+[shield-node]: https://img.shields.io/badge/node.js%20support-0.10–4-brightgreen.svg
 [shield-npm]: https://img.shields.io/npm/v/grime.svg
 [shield-build]: https://img.shields.io/travis/rowanmanning/grime/master.svg
