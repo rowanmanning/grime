@@ -18,8 +18,8 @@
         "node": ">=0.10"
     },
     "dependencies": {
-        "chokidar": "~1.0",
-        "glob": "^5",
+        "chokidar": "~1.4",
+        "glob": "^6",
         "underscore": "~1.8"
     },
     "devDependencies": {
