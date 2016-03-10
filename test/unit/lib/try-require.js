@@ -1,35 +1,35 @@
-// jshint maxstatements: false
-// jscs:disable disallowMultipleVarDecl, maximumLineLength
+// jscs:disable maximumLineLength
 'use strict';
 
-var assert = require('proclaim');
-var mockery = require('mockery');
+const assert = require('proclaim');
+const mockery = require('mockery');
 
-describe('lib/try-require', function () {
-    var tryRequire, fooModule;
+describe('lib/try-require', () => {
+    let fooModule;
+    let tryRequire;
 
-    beforeEach(function () {
+    beforeEach(() => {
         fooModule = {};
         mockery.registerMock('foo', fooModule);
         tryRequire = require('../../../lib/try-require');
     });
 
-    it('should be a function', function () {
+    it('should be a function', () => {
         assert.isFunction(tryRequire);
     });
 
-    describe('tryRequire()', function () {
+    describe('tryRequire()', () => {
 
-        it('should return the required module if it exists', function () {
+        it('should return the required module if it exists', () => {
             assert.strictEqual(tryRequire('foo'), fooModule);
         });
 
-        it('should return `undefined` if a module does not exist', function () {
+        it('should return `undefined` if a module does not exist', () => {
             assert.isUndefined(tryRequire('bar'));
         });
 
-        it('should not throw if a module does not exist', function () {
-            assert.doesNotThrow(function () {
+        it('should not throw if a module does not exist', () => {
+            assert.doesNotThrow(() => {
                 tryRequire('bar');
             });
         });
