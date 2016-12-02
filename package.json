@@ -1,42 +1,41 @@
 {
-    "name": "grime",
-    "version": "1.0.1",
-
-    "description": "Manage loading and watching of dust templates, helpers, and filters",
-    "keywords": [ "dust", "template" ],
-    "author": "Rowan Manning (http://rowanmanning.com/)",
-
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/rowanmanning/grime.git"
-    },
-    "homepage": "https://github.com/rowanmanning/grime",
-    "bugs": "https://github.com/rowanmanning/grime/issues",
-    "license": "MIT",
-
-    "engines": {
-        "node": ">=4"
-    },
-    "dependencies": {
-        "chokidar": "~1.4",
-        "glob": "^7",
-        "underscore": "~1.8"
-    },
-    "devDependencies": {
-        "connect": "^3",
-        "dustjs-helpers": "~1.7",
-        "dustjs-linkedin": "~2.7",
-        "istanbul": "~0.4",
-        "jscs": "^2",
-        "jshint": "^2",
-        "mocha": "^2",
-        "mockery": "^1",
-        "proclaim": "^3",
-        "sinon": "^1"
-    },
-
-    "main": "./lib/grime.js",
-    "scripts": {
-        "test": "make ci"
-    }
+  "name": "grime",
+  "version": "1.0.1",
+  "description": "Manage loading and watching of dust templates, helpers, and filters",
+  "keywords": [
+    "dust",
+    "template"
+  ],
+  "author": "Rowan Manning (http://rowanmanning.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rowanmanning/grime.git"
+  },
+  "homepage": "https://github.com/rowanmanning/grime",
+  "bugs": "https://github.com/rowanmanning/grime/issues",
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "chokidar": "~1.4",
+    "glob": "^7",
+    "underscore": "~1.8"
+  },
+  "devDependencies": {
+    "connect": "^3",
+    "dustjs-helpers": "~1.7",
+    "dustjs-linkedin": "~2.7",
+    "istanbul": "~0.4",
+    "jscs": "^2",
+    "jshint": "^2",
+    "mocha": "^2",
+    "mockery": "^1",
+    "proclaim": "^3",
+    "sinon": "^1"
+  },
+  "main": "./lib/grime.js",
+  "scripts": {
+    "test": "make ci"
+  }
 }
