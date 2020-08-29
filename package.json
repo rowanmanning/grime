@@ -20,7 +20,7 @@
   "dependencies": {
     "chokidar": "~1.4",
     "glob": "^7",
-    "underscore": "~1.8"
+    "underscore": "~1.11"
   },
   "devDependencies": {
     "connect": "^3",
