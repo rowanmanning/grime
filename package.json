@@ -32,7 +32,7 @@
     "mocha": "^2",
     "mockery": "^1",
     "proclaim": "^3",
-    "sinon": "^1"
+    "sinon": "^10"
   },
   "main": "./lib/grime.js",
   "scripts": {
